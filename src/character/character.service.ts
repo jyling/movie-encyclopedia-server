@@ -5,21 +5,33 @@ import { UpdateCharacterInput } from './dto/update-character.input';
 
 @Injectable()
 export class CharacterService {
+
+  private characterInclude = {
+    MovieCharacter : {
+      include: {
+        Character: true,
+        Movie: true
+      }
+    }
+  }
   constructor(private prima : PrismaService) {}
   create(createCharacterInput: CreateCharacterInput) {
     let {name} = createCharacterInput;
     return this.prima.character.create({
-      data: {name}
+      data: {name},
     })
   }
 
   findAll() {
-    return this.prima.character.findMany();
+    return this.prima.character.findMany({
+      include : this.characterInclude
+    });
   }
 
   findOne(id: number) {
     return this.prima.character.findFirst({
-      where: {id}
+      where: {id},
+      include : this.characterInclude
     });
   }
 
