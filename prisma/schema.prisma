@@ -17,6 +17,7 @@ model Movie {
   description String
   releasedDate DateTime
   MovieCharacter MovieCharacter[]
+  MovieGenre MovieGenre[]
 }
 
 model MovieCharacter {
@@ -30,5 +31,19 @@ model MovieCharacter {
 model Character {
   id Int @id @default(autoincrement())
   name String @db.VarChar(32)
-  movie MovieCharacter[]
+  MovieCharacter MovieCharacter[]
+}
+
+model MovieGenre {
+  id Int @id @default(autoincrement())
+  genre_id Int
+  Genre Genre @relation(fields: [genre_id], references: [id])
+  movie_id Int
+  Movie Movie @relation(fields: [movie_id], references: [id])
+}
+
+model Genre {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(32)
+  MovieGenre MovieGenre[]
 }
