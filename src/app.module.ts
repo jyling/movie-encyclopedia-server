@@ -8,11 +8,12 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { CharacterModule } from './character/character.module';
 import { MovieCharacterModule } from './movie-character/movie-character.module';
+import { GenreModule } from './genre/genre.module';
 
 @Module({
   imports: [MovieModule, PrismaModule, GraphQLModule.forRoot({
     autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-  }), CharacterModule, MovieCharacterModule],
+  }), CharacterModule, MovieCharacterModule, GenreModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })

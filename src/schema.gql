@@ -46,6 +46,11 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Genre {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   movie: [Movie!]!
   movie_find(id: Int!): Movie!
@@ -53,6 +58,7 @@ type Query {
   character_find(id: Int!): Character!
   MovieCharacter: [MovieCharacter!]!
   MovieCharacter_find(id: Int!): MovieCharacter!
+  genre(id: Int!): Genre!
 }
 
 type Mutation {
@@ -63,6 +69,9 @@ type Mutation {
   updateCharacter(updateCharacterInput: UpdateCharacterInput!): Character!
   removeCharacter(id: Int!): Character!
   createMovieCharacter(createMovieCharacterInput: CreateMovieCharacterInput!): MovieCharacter!
+  createGenre(createGenreInput: CreateGenreInput!): Genre!
+  updateGenre(updateGenreInput: UpdateGenreInput!): Genre!
+  removeGenre(id: Int!): Genre!
 }
 
 input CreateMovieInput {
@@ -109,4 +118,21 @@ input CreateMovieCharacterInput {
 
   """Example field (placeholder)"""
   movie_id: Float!
+}
+
+input CreateGenreInput {
+  """name of the genre"""
+  name: String!
+
+  """description of the genre"""
+  description: String!
+}
+
+input UpdateGenreInput {
+  """name of the genre"""
+  name: String!
+
+  """description of the genre"""
+  description: String!
+  id: Int!
 }
