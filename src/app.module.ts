@@ -12,6 +12,9 @@ import { MovieCharacter } from './models/movie.characters.entity';
 import { Character } from './models/character.entity';
 import { MovieGenre } from './models/movie.genre.entity';
 import { Genre } from './models/genre.entity';
+import { MovieDirector } from './models/movie.director.entity';
+import { MovieWriter } from './models/movie.writer.entity';
+import { People } from './models/people.entity';
 
 
 const {database_host,database_port,database_username,database_password,database_name} = process.env
@@ -27,7 +30,7 @@ const {database_host,database_port,database_username,database_password,database_
       username: database_username,
       password: database_password,
       database: database_name,
-      entities: [Movie, MovieImage, MovieCharacter, Character, MovieGenre, Genre],
+      entities: [Movie, MovieImage, MovieCharacter, Character, MovieGenre, Genre, MovieDirector, MovieWriter, People],
       migrationsTableName: 'migration',
       migrations: ['dist/src/migration/**/*.{ts,js}'],
       cli: {

@@ -13,6 +13,17 @@ type MovieCharacter {
   character: Character!
 }
 
+type People {
+  id: String!
+  name: String!
+}
+
+type MovieDirector {
+  id: String!
+  movie: Movie!
+  people: People!
+}
+
 type Genre {
   id: String!
   name: String!
@@ -25,6 +36,12 @@ type MovieGenre {
   genre: Genre!
 }
 
+type MovieWriter {
+  id: String!
+  movie: Movie!
+  people: People!
+}
+
 type Movie {
   id: String!
   name: String!
@@ -35,6 +52,8 @@ type Movie {
   images: [MovieImage!]!
   movieCharacter: [MovieCharacter!]!
   genres: [MovieGenre!]!
+  directors: [MovieDirector!]!
+  writers: [MovieWriter!]!
 }
 
 """
