@@ -18,7 +18,7 @@ export class CharacterResolver {
     return this.characterService.findAll();
   }
 
-  @Query(() => Character, { name: 'character' })
+  @Query(() => Character, { name: 'character_find' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.characterService.findOne(id);
   }
