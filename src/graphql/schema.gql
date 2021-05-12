@@ -2,6 +2,17 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Character {
+  id: String!
+  name: String!
+}
+
+type MovieCharacter {
+  id: String!
+  movie: Character!
+  character: Character!
+}
+
 type Movie {
   id: String!
   name: String!
@@ -10,6 +21,7 @@ type Movie {
   createdAt: DateTime!
   updatedAt: DateTime!
   images: [MovieImage!]!
+  movieCharacter: [MovieCharacter!]!
 }
 
 """

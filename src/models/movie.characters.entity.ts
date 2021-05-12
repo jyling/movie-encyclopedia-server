@@ -13,7 +13,7 @@ export class MovieCharacter {
 
 
 
-    @OneToMany(() => Movie, (movie : Movie) => movie.characters)
+    @OneToMany(() => Movie, (movie : Movie) => movie.movieCharacter)
     @JoinColumn()
     @Field(type => Character)
     public movie: Character

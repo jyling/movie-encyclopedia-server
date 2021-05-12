@@ -37,11 +37,12 @@ export class Movie {
     @Field(type => [MovieImage], { defaultValue: []})
     public images: MovieImage[]
 
-    @OneToMany(() => MovieCharacter, (character : MovieCharacter) => character.movie, {
+
+    @OneToMany(() => MovieCharacter, (movieCharacter : MovieCharacter) => movieCharacter.movie, {
         nullable: true
     })
     @JoinColumn()
     @Field(type => [MovieCharacter], { defaultValue: []})
-    public characters: MovieCharacter[]
+    public movieCharacter: MovieCharacter[]
 
 }
