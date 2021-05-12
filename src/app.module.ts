@@ -8,6 +8,8 @@ import { Movie } from './models/movie.entity';
 import { MovieImage } from './models/movie.image.entity';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
+import { MovieCharacter } from './models/movie.characters.entity';
+import { Character } from './models/character.entity';
 
 
 const {database_host,database_port,database_username,database_password,database_name} = process.env
@@ -23,7 +25,7 @@ const {database_host,database_port,database_username,database_password,database_
       username: database_username,
       password: database_password,
       database: database_name,
-      entities: [Movie, MovieImage],
+      entities: [Movie, MovieImage, MovieCharacter, Character],
       migrationsTableName: 'migration',
       migrations: ['dist/src/migration/**/*.{ts,js}'],
       cli: {
