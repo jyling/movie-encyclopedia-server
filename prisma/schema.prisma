@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:changeme@localhost:5432/movie_encyclopedia_backup"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model Movie {
+  id Int @unique() @default(autoincrement())
+  name String @db.VarChar(32)
+  description String
+}
+
+model MovieCharacter {
+  id Int @unique() @default(autoincrement())
+  character_id Int
+  character Character @relation(fields: [character_id], references: [id])
+}
+
+model Character {
+  id Int @unique() @default(autoincrement())
+  name String @db.VarChar(32)
+  movie MovieCharacter[]
+}
