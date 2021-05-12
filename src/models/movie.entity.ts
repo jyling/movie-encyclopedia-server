@@ -37,7 +37,11 @@ export class Movie {
     @Field(type => [MovieImage], { defaultValue: []})
     public images: MovieImage[]
 
-
-
+    @OneToMany(() => MovieCharacter, (character : MovieCharacter) => character.movie, {
+        nullable: true
+    })
+    @JoinColumn()
+    @Field(type => [MovieCharacter], { defaultValue: []})
+    public characters: MovieCharacter[]
 
 }
