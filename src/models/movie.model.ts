@@ -1,4 +1,5 @@
-import { PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, Entity } from 'typeorm';
+import { PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, Entity, OneToMany, JoinColumn } from 'typeorm';
+import { MovieImage } from './movie.image.model';
 
 @Entity()
 export class Movie {
@@ -9,15 +10,19 @@ export class Movie {
     name: string;
 
     @Column({ type: 'timestamptz', default: false })
-    released_date: Date;
+    releasedDate: Date;
 
     @Column({ type: 'text', default: false })
     description: string;
 
     @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-    created_at: Date;
+    createdAt: Date;
 
     @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-    updated_at: Date;
+    updatedAt: Date;
+
+    @OneToMany(() => MovieImage, (movieImage : MovieImage) => movieImage.Movie)
+    @JoinColumn()
+    public Images: MovieImage[]
 
 }

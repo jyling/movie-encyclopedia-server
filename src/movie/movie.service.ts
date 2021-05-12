@@ -14,12 +14,13 @@ export class MovieService {
 
     async findOne(id : string){
         try {
-            const found = await this.movieRepo.findOne({id});
+            const found = await this.movieRepo.findOne(id, {relations: ["Images"]});
             if (!found) {
                 throw new Error("not found");
             }
             return await found;
         } catch (error) {
+            console.log(error)
             throw new NotFoundException(null, "Could not find the movie")
         }
     }

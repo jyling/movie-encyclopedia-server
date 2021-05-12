@@ -4,7 +4,7 @@ export class movieImageTable1620736601302 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: "MovieImage",
+            name: "movie_image",
             columns: [
                 {
                     name: "id",
@@ -19,13 +19,13 @@ export class movieImageTable1620736601302 implements MigrationInterface {
             ]
         }))
 
-        await queryRunner.addColumn("MovieImage", new TableColumn({
-            name: "movie_id",
+        await queryRunner.addColumn("movie_image", new TableColumn({
+            name: "movieId",
             type: "uuid"
         }));
 
-        await queryRunner.createForeignKey("MovieImage", new TableForeignKey({
-            columnNames: ["movie_id"],
+        await queryRunner.createForeignKey("movie_image", new TableForeignKey({
+            columnNames: ["movieId"],
             referencedColumnNames: ["id"],
             referencedTableName: "Movie",
             onDelete: "CASCADE"
@@ -33,7 +33,7 @@ export class movieImageTable1620736601302 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("MovieImage", true, true)
+        await queryRunner.dropTable("movie_image", true, true)
     }
 
 }

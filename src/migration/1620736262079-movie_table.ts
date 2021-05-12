@@ -18,7 +18,7 @@ export class movieTable1620736262079 implements MigrationInterface {
                     type: "varchar",
                 },
                 {
-                  name: 'released_date',
+                  name: 'releasedDate',
                   type: 'timestamptz',
                 },
                 {
@@ -26,12 +26,12 @@ export class movieTable1620736262079 implements MigrationInterface {
                     type: "text"
                 },
                 {
-                    name: "created_at",
+                    name: "createdAt",
                     type: "timestamptz",
                     default: "now()"
                 },
                 {
-                    name: "updated_at",
+                    name: "updatedAt",
                     type: "timestamptz",
                     default: "now()"
                 } 
