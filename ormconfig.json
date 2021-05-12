@@ -6,7 +6,7 @@
   "password": "changeme",
   "database": "movie_encyclopedia_backup",
   "entities": [
-    "dist/src/models/*.model.{ts,js}"
+    "dist/src/models/*.entity.{ts,js}"
   ],
   "migrationsTableName": "migration",
   "migrations": [

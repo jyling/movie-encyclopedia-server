@@ -10,7 +10,7 @@ fs.writeFileSync('ormconfig.json',
     username: database_username,
     password: database_password,
     database: database_name,
-    entities: ["dist/src/models/*.model.{ts,js}"],
+    entities: ["dist/src/models/*.entity.{ts,js}"],
     migrationsTableName: 'migration',
     migrations: ['src/migration/**/*.{ts,js}'],
     cli: {
