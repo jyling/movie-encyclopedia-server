@@ -1,0 +1,110 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Character {
+  """Example field (placeholder)"""
+  id: Int!
+  name: String!
+}
+
+type MovieCharacter {
+  """Example field (placeholder)"""
+  id: Int
+
+  """Example field (placeholder)"""
+  character_id: Int!
+
+  """Example field (placeholder)"""
+  Character: Character!
+
+  """Example field (placeholder)"""
+  movie_id: Int!
+
+  """Example field (placeholder)"""
+  Movie: Movie!
+}
+
+type Movie {
+  """id of the movie"""
+  id: Float!
+
+  """name of the movie"""
+  name: String!
+
+  """release date of the movie"""
+  releasedDate: DateTime!
+
+  """description of the movie"""
+  description: String!
+  MovieCharacter: [MovieCharacter!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  movie: [Movie!]!
+  movie_find(id: Int!): Movie!
+  character(id: Int!): Character!
+  MovieCharacter: [MovieCharacter!]!
+  MovieCharacter_find(id: Int!): MovieCharacter!
+}
+
+type Mutation {
+  createMovie(createMovieInput: CreateMovieInput!): Movie!
+  updateMovie(updateMovieInput: UpdateMovieInput!): Movie!
+  removeMovie(id: Int!): Movie!
+  createCharacter(createCharacterInput: CreateCharacterInput!): Character!
+  updateCharacter(updateCharacterInput: UpdateCharacterInput!): Character!
+  removeCharacter(id: Int!): Character!
+  createMovieCharacter(createMovieCharacterInput: CreateMovieCharacterInput!): MovieCharacter!
+}
+
+input CreateMovieInput {
+  """name of the movie"""
+  name: String!
+
+  """release date of the movie"""
+  releasedDate: DateTime!
+
+  """description of the movie"""
+  description: String!
+}
+
+input UpdateMovieInput {
+  """name of the movie"""
+  name: String!
+
+  """release date of the movie"""
+  releasedDate: DateTime
+
+  """description of the movie"""
+  description: String!
+
+  """id of the movie"""
+  id: Float!
+
+  """release date of the movie"""
+  releaseDate: DateTime!
+}
+
+input CreateCharacterInput {
+  """Example field (placeholder)"""
+  name: String!
+}
+
+input UpdateCharacterInput {
+  name: String!
+  id: Float!
+}
+
+input CreateMovieCharacterInput {
+  """Example field (placeholder)"""
+  character_id: Float!
+
+  """Example field (placeholder)"""
+  movie_id: Float!
+}
