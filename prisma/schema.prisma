@@ -12,19 +12,23 @@ generator client {
 
 
 model Movie {
-  id Int @unique() @default(autoincrement())
+  id Int @id @default(autoincrement())
   name String @db.VarChar(32)
   description String
+  releasedDate DateTime
+  MovieCharacter MovieCharacter[]
 }
 
 model MovieCharacter {
-  id Int @unique() @default(autoincrement())
+  id Int @id @default(autoincrement())
   character_id Int
-  character Character @relation(fields: [character_id], references: [id])
+  Character Character @relation(fields: [character_id], references: [id])
+  movie_id Int
+  Movie Movie @relation(fields: [movie_id], references: [id])
 }
 
 model Character {
-  id Int @unique() @default(autoincrement())
+  id Int @id @default(autoincrement())
   name String @db.VarChar(32)
   movie MovieCharacter[]
 }

@@ -18,13 +18,11 @@ CREATE TABLE "Character" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Movie.id_unique" ON "Movie"("id");
+ALTER TABLE "Movie" ADD PRIMARY KEY ("id");
+ALTER TABLE "Character" ADD PRIMARY KEY ("id");
+ALTER TABLE "MovieCharacter" ADD PRIMARY KEY ("id");
 
--- CreateIndex
-CREATE UNIQUE INDEX "MovieCharacter.id_unique" ON "MovieCharacter"("id");
 
--- CreateIndex
-CREATE UNIQUE INDEX "Character.id_unique" ON "Character"("id");
 
 -- AddForeignKey
 ALTER TABLE "MovieCharacter" ADD FOREIGN KEY ("character_id") REFERENCES "Character"("id") ON DELETE CASCADE ON UPDATE CASCADE;
