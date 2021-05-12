@@ -4,13 +4,18 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MovieModule } from './movie/movie.module';
 import 'dotenv/config';
-import { Movie } from './models/movie.model';
-import { MovieImage } from './models/movie.image.model';
+import { Movie } from './models/movie.entity';
+import { MovieImage } from './models/movie.image.entity';
+import { GraphQLModule } from '@nestjs/graphql';
+import { join } from 'path';
 
 
 const {database_host,database_port,database_username,database_password,database_name} = process.env
 @Module({
   imports: [
+    GraphQLModule.forRoot({
+      autoSchemaFile: join(process.cwd(), 'src/graphql/schema.gql')
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: database_host,
