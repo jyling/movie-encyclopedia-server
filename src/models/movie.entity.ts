@@ -1,6 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { PrimaryGeneratedColumn, Column, UpdateDateColumn, CreateDateColumn, Entity, OneToMany, JoinColumn } from 'typeorm';
 import { MovieCharacter } from './movie.characters.entity';
+import { MovieGenre } from './movie.genre.entity';
 import { MovieImage } from './movie.image.entity';
 
 @Entity()
@@ -44,5 +45,10 @@ export class Movie {
     @JoinColumn()
     @Field(type => [MovieCharacter], { defaultValue: []})
     public movieCharacter: MovieCharacter[]
+
+    @OneToMany(() => MovieGenre, (movieGenre : MovieGenre) => movieGenre.movie)
+    @JoinColumn()
+    @Field(type => [MovieGenre], {defaultValue: []})
+    public genres: MovieGenre[]
 
 }
