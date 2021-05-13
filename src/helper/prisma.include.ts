@@ -9,6 +9,18 @@ export const MovieInclude = {
         include: {
             Genre: true
         }
+    },
+    MovieDirector: {
+        include : {
+            Movie: true, 
+            People: true
+        }
+    },
+    MovieWriter: {
+        include : {
+            Movie: true, 
+            People: true
+        }
     }
 }
 
@@ -70,3 +82,31 @@ export const PeopleInclude = {
         }
     }
 }
+
+export const MovieDirectorOrWriter = {
+    Movie: {
+      include: {
+        MovieDirector: {
+          include: {
+            People: true
+          }
+        },
+        MovieWriter: {
+          include: {
+            People: true
+          }
+        },
+        MovieGenre: {
+          include: {
+            Genre: true
+          }
+        },
+        MovieCharacter: {
+          include: {
+            Character: true
+          }
+        },
+      }
+    },
+    People: true
+  }
