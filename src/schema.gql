@@ -101,6 +101,20 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type MovieWriter {
+  """people id of the movie writer"""
+  people_id: Int!
+
+  """people of the movie writer"""
+  People: People!
+
+  """movie id of the movie writer"""
+  movie_id: Int!
+
+  """movie of the movie writer"""
+  Movie: Movie!
+}
+
 type Query {
   movie: [Movie!]!
   movie_find(id: Int!): Movie!
@@ -115,6 +129,7 @@ type Query {
   person_find(id: Int!): People!
   movieDirector: [MovieDirector!]!
   movieDirector_find(id: Int!): MovieDirector!
+  movieWriter(id: Int!): MovieWriter!
 }
 
 type Mutation {
@@ -137,6 +152,9 @@ type Mutation {
   createMovieDirector(createMovieDirectorInput: CreateMovieDirectorInput!): MovieDirector!
   updateMovieDirector(updateMovieDirectorInput: UpdateMovieDirectorInput!): MovieDirector!
   removeMovieDirector(id: Int!): MovieDirector!
+  createMovieWriter(createMovieWriterInput: CreateMovieWriterInput!): MovieWriter!
+  updateMovieWriter(updateMovieWriterInput: UpdateMovieWriterInput!): MovieWriter!
+  removeMovieWriter(id: Int!): MovieWriter!
 }
 
 input CreateMovieInput {
@@ -250,5 +268,22 @@ input UpdateMovieDirectorInput {
   movie_id: Int!
 
   """id of the movie director"""
+  id: Int!
+}
+
+input CreateMovieWriterInput {
+  """people id of the movie director"""
+  people_id: Int!
+
+  """movie id of the movie director"""
+  movie_id: Int!
+}
+
+input UpdateMovieWriterInput {
+  """people id of the movie director"""
+  people_id: Int!
+
+  """movie id of the movie director"""
+  movie_id: Int!
   id: Int!
 }
