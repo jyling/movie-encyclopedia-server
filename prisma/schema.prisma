@@ -18,6 +18,8 @@ model Movie {
   releasedDate DateTime
   MovieCharacter MovieCharacter[]
   MovieGenre MovieGenre[]
+  MovieDirector MovieDirector[]
+  MovieWriter MovieWriter[]
 }
 
 model MovieCharacter {
@@ -47,4 +49,27 @@ model Genre {
   name String @db.VarChar(32)
   description String
   MovieGenre MovieGenre[]
+}
+
+model MovieDirector {
+  id Int @id @default(autoincrement())
+  people_id Int
+  People People @relation(fields: [people_id], references: [id])
+  movie_id Int
+  Movie Movie @relation(fields: [movie_id], references: [id])
+}
+
+model MovieWriter {
+  id Int @id @default(autoincrement())
+  people_id Int
+  People People @relation(fields: [people_id], references: [id])
+  movie_id Int
+  Movie Movie @relation(fields: [movie_id], references: [id])
+}
+
+model People {
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(32)
+  MovieWriter MovieWriter[]
+  MovieDirector MovieDirector[]
 }
