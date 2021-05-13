@@ -1,18 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { GenreInclude } from 'src/helper/prisma.include';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateGenreInput } from './dto/create-genre.input';
 import { UpdateGenreInput } from './dto/update-genre.input';
 
 @Injectable()
 export class GenreService {
-  private GenreInclude = {
-    MovieGenre: {
-      include: {
-        Movie: true,
-        Genre: true,
-      }
-    }
-  }
   constructor(private prisma : PrismaService) {}
   create(createGenreInput: CreateGenreInput) {
     let { name, description } = createGenreInput;
@@ -25,14 +18,14 @@ export class GenreService {
 
   findAll() {
     return this.prisma.genre.findMany({
-      include: this.GenreInclude
+      include: GenreInclude
     })
   }
 
   findOne(id: number) {
     return this.prisma.genre.findFirst({
       where: {id},
-      include: this.GenreInclude
+      include: GenreInclude
     })
   }
 

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { MovieInclude } from 'src/helper/prisma.include';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateMovieInput } from './dto/create-movie.input';
 import { UpdateMovieInput } from './dto/update-movie.input';
@@ -23,14 +24,14 @@ export class MovieService {
 
   findAll() {
     return this.prisma.movie.findMany({
-      include: this.MovieIncludes
+      include: MovieInclude
     });
   }
 
   findOne(id: number) {
     return this.prisma.movie.findFirst({
       where: {id},
-      include: this.MovieIncludes
+      include: MovieInclude
     })
   }
 

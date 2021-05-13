@@ -2,18 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCharacterInput } from './dto/create-character.input';
 import { UpdateCharacterInput } from './dto/update-character.input';
+import { CharacterInclude } from 'src/helper/prisma.include';
 
 @Injectable()
 export class CharacterService {
 
-  private characterInclude = {
-    MovieCharacter : {
-      include: {
-        Character: true,
-        Movie: true
-      }
-    }
-  }
+
   constructor(private prima : PrismaService) {}
   create(createCharacterInput: CreateCharacterInput) {
     let {name} = createCharacterInput;
@@ -24,14 +18,14 @@ export class CharacterService {
 
   findAll() {
     return this.prima.character.findMany({
-      include : this.characterInclude
+      include : CharacterInclude
     });
   }
 
   findOne(id: number) {
     return this.prima.character.findFirst({
       where: {id},
-      include : this.characterInclude
+      include : CharacterInclude
     });
   }
 

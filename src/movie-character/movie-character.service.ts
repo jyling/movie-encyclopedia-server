@@ -2,13 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateMovieCharacterInput } from './dto/create-movie.character.input';
 import { UpdateMovieCharacterInput } from './dto/update-movie.character.input';
-
+import { MovieCharacterInclude } from 'src/helper/prisma.include'
 @Injectable()
 export class MovieCharacterService {
-  private MovieCharacterInclude = {
-    Character: true,
-    Movie: true
-  }
+ 
   constructor(private prima : PrismaService) {}
 
   create(createMovieCharacterInput: CreateMovieCharacterInput) {
@@ -23,14 +20,14 @@ export class MovieCharacterService {
 
   async findAll() {
     return await this.prima.movieCharacter.findMany({
-      include: this.MovieCharacterInclude
+      include: MovieCharacterInclude
     });
   }
 
   findOne(id: number) {
     return this.prima.movieCharacter.findFirst({
       where: {id},
-      include: this.MovieCharacterInclude
+      include: MovieCharacterInclude
     });
   }
 
