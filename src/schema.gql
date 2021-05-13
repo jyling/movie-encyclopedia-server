@@ -26,6 +26,31 @@ type MovieCharacter {
   Movie: Movie!
 }
 
+type People {
+  """id of the people"""
+  id: Int!
+
+  """name of the people"""
+  name: String!
+}
+
+type MovieDirector {
+  """id of the movie director"""
+  id: Int!
+
+  """people id of the movie director"""
+  people_id: Int!
+
+  """Example field (placeholder)"""
+  People: People!
+
+  """movie id of the movie director"""
+  movie_id: Int!
+
+  """Example field (placeholder)"""
+  Movie: Movie!
+}
+
 type Genre {
   """id of genre"""
   id: Int
@@ -68,20 +93,13 @@ type Movie {
   description: String!
   MovieCharacter: [MovieCharacter!]!
   MovieGenre: [MovieGenre!]!
+  MovieDirector: [MovieDirector!]!
 }
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-type Person {
-  """id of the people"""
-  id: Int!
-
-  """name of the people"""
-  name: String!
-}
 
 type Query {
   movie: [Movie!]!
@@ -93,8 +111,10 @@ type Query {
   genre: [Genre!]!
   genre_find(id: Int!): Genre!
   movieGenre(id: Int!): MovieGenre!
-  people: [Person!]!
-  person(id: Int!): Person!
+  people: [People!]!
+  person_find(id: Int!): People!
+  movieDirector: [MovieDirector!]!
+  movieDirector_find(id: Int!): MovieDirector!
 }
 
 type Mutation {
@@ -111,9 +131,12 @@ type Mutation {
   createMovieGenre(createMovieGenreInput: CreateMovieGenreInput!): MovieGenre!
   updateMovieGenre(updateMovieGenreInput: UpdateMovieGenreInput!): MovieGenre!
   removeMovieGenre(id: Int!): MovieGenre!
-  createPerson(createPersonInput: CreatePersonInput!): Person!
-  updatePerson(updatePersonInput: UpdatePersonInput!): Person!
-  removePerson(id: Int!): Person!
+  createPeople(createPeopleInput: CreatePeopleInput!): People!
+  updatePeople(updatePeopleInput: UpdatePeopleInput!): People!
+  removePeople(id: Int!): People!
+  createMovieDirector(createMovieDirectorInput: CreateMovieDirectorInput!): MovieDirector!
+  updateMovieDirector(updateMovieDirectorInput: UpdateMovieDirectorInput!): MovieDirector!
+  removeMovieDirector(id: Int!): MovieDirector!
 }
 
 input CreateMovieInput {
@@ -198,13 +221,34 @@ input UpdateMovieGenreInput {
   id: Int!
 }
 
-input CreatePersonInput {
+input CreatePeopleInput {
   """name of the people"""
   name: String!
 }
 
-input UpdatePersonInput {
+input UpdatePeopleInput {
   """name of the people"""
-  name: String
+  name: String!
+
+  """id of the people"""
+  id: Int!
+}
+
+input CreateMovieDirectorInput {
+  """people id of the movie director"""
+  people_id: Int!
+
+  """movie id of the movie director"""
+  movie_id: Int!
+}
+
+input UpdateMovieDirectorInput {
+  """people id of the movie director"""
+  people_id: Int!
+
+  """movie id of the movie director"""
+  movie_id: Int!
+
+  """id of the movie director"""
   id: Int!
 }
