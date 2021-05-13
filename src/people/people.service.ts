@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { PeopleInclude } from 'src/helper/prisma.include';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { CreatePersonInput } from './dto/create-person.input';
-import { UpdatePersonInput } from './dto/update-person.input';
+import { CreatePeopleInput } from './dto/create-people.input';
+import { UpdatePeopleInput } from './dto/update-people.input';
 
 @Injectable()
 export class PeopleService {
   constructor(private prisma : PrismaService){}
-  create(createPersonInput: CreatePersonInput) {
-    let {name} = createPersonInput;
+  create(createPeopleInput: CreatePeopleInput) {
+    let {name} = createPeopleInput;
     return this.prisma.people.create({
       data: {
         name
@@ -29,8 +29,8 @@ export class PeopleService {
     })
   }
 
-  update(id: number, updatePersonInput: UpdatePersonInput) {
-    let {name} = updatePersonInput;
+  update(id: number, updatePeopleInput: UpdatePeopleInput) {
+    let {name} = updatePeopleInput;
     return this.prisma.people.update({
       where: {id},
       data: {

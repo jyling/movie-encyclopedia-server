@@ -1,35 +1,35 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { PeopleService } from './people.service';
-import { Person } from './entities/person.entity';
-import { CreatePersonInput } from './dto/create-person.input';
-import { UpdatePersonInput } from './dto/update-person.input';
+import { People } from './entities/people.entity';
+import { CreatePeopleInput } from './dto/create-people.input';
+import { UpdatePeopleInput } from './dto/update-people.input';
 
-@Resolver(() => Person)
+@Resolver(() => People)
 export class PeopleResolver {
   constructor(private readonly peopleService: PeopleService) {}
 
-  @Mutation(() => Person)
-  createPerson(@Args('createPersonInput') createPersonInput: CreatePersonInput) {
-    return this.peopleService.create(createPersonInput);
+  @Mutation(() => People)
+  createPeople(@Args('createPeopleInput') createPeopleInput: CreatePeopleInput) {
+    return this.peopleService.create(createPeopleInput);
   }
 
-  @Query(() => [Person], { name: 'people' })
+  @Query(() => [People], { name: 'people' })
   findAll() {
     return this.peopleService.findAll();
   }
 
-  @Query(() => Person, { name: 'person_find' })
+  @Query(() => People, { name: 'person_find' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.peopleService.findOne(id);
   }
 
-  @Mutation(() => Person)
-  updatePerson(@Args('updatePersonInput') updatePersonInput: UpdatePersonInput) {
-    return this.peopleService.update(updatePersonInput.id, updatePersonInput);
+  @Mutation(() => People)
+  updatePeople(@Args('updatePeopleInput') updatePeopleInput: UpdatePeopleInput) {
+    return this.peopleService.update(updatePeopleInput.id, updatePeopleInput);
   }
 
-  @Mutation(() => Person)
-  removePerson(@Args('id', { type: () => Int }) id: number) {
+  @Mutation(() => People)
+  removePeople(@Args('id', { type: () => Int }) id: number) {
     return this.peopleService.remove(id);
   }
 }
