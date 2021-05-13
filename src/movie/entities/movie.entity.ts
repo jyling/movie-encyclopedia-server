@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { MovieCharacter } from 'src/movie-character/entities/movie.character.entity';
+import { MovieGenre } from 'src/movie-genre/entities/movie-genre.entity';
 
 @ObjectType()
 export class Movie {
@@ -17,4 +18,7 @@ export class Movie {
 
   @Field(() => [MovieCharacter])
   MovieCharacter: MovieCharacter[]
+
+  @Field(() => [MovieGenre])
+  MovieGenre: MovieGenre[]
 }
