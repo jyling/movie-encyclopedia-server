@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres:changeme@localhost:5432/movie_encyclopedia_backup"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -47,7 +47,7 @@ model MovieGenre {
 model Genre {
   id Int @id @default(autoincrement())
   name String @db.VarChar(32)
-  description String
+  description String @default("")
   MovieGenre MovieGenre[]
 }
 
