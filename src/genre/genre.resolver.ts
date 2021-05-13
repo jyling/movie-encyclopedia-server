@@ -18,7 +18,7 @@ export class GenreResolver {
     return this.genreService.findAll();
   }
 
-  @Query(() => Genre, { name: 'genre' })
+  @Query(() => Genre, { name: 'genre_find' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.genreService.findOne(id);
   }
