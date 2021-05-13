@@ -11,11 +11,12 @@ import { MovieCharacterModule } from './movie-character/movie-character.module';
 import { GenreModule } from './genre/genre.module';
 import { MovieGenreModule } from './movie-genre/movie-genre.module';
 import { PeopleModule } from './people/people.module';
+import { MovieDirectorModule } from './movie-director/movie-director.module';
 
 @Module({
   imports: [MovieModule, PrismaModule, GraphQLModule.forRoot({
     autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-  }), CharacterModule, MovieCharacterModule, GenreModule, MovieGenreModule, PeopleModule],
+  }), CharacterModule, MovieCharacterModule, GenreModule, MovieGenreModule, PeopleModule, MovieDirectorModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
