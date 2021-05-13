@@ -36,3 +36,22 @@ export const CharacterInclude = {
         }
     }
 }
+
+
+export const MovieGenreInclude = {
+    Movie: {
+      include : {
+        MovieCharacter : {
+          include: {
+            Character: true
+          }
+        },
+        MovieGenre: {
+          include: {
+            Genre: true
+          }
+        }
+      }
+    }
+    
+}
