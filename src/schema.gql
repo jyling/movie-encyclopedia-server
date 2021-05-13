@@ -75,6 +75,14 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Person {
+  """id of the people"""
+  id: Int!
+
+  """name of the people"""
+  name: String!
+}
+
 type Query {
   movie: [Movie!]!
   movie_find(id: Int!): Movie!
@@ -85,6 +93,8 @@ type Query {
   genre: [Genre!]!
   genre_find(id: Int!): Genre!
   movieGenre(id: Int!): MovieGenre!
+  people: [Person!]!
+  person(id: Int!): Person!
 }
 
 type Mutation {
@@ -101,6 +111,9 @@ type Mutation {
   createMovieGenre(createMovieGenreInput: CreateMovieGenreInput!): MovieGenre!
   updateMovieGenre(updateMovieGenreInput: UpdateMovieGenreInput!): MovieGenre!
   removeMovieGenre(id: Int!): MovieGenre!
+  createPerson(createPersonInput: CreatePersonInput!): Person!
+  updatePerson(updatePersonInput: UpdatePersonInput!): Person!
+  removePerson(id: Int!): Person!
 }
 
 input CreateMovieInput {
@@ -182,5 +195,16 @@ input UpdateMovieGenreInput {
   genre_id: Int!
 
   """id of movie genre"""
+  id: Int!
+}
+
+input CreatePersonInput {
+  """name of the people"""
+  name: String!
+}
+
+input UpdatePersonInput {
+  """name of the people"""
+  name: String
   id: Int!
 }
