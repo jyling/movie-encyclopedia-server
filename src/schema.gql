@@ -26,12 +26,28 @@ type MovieCharacter {
   Movie: Movie!
 }
 
+type MovieWriter {
+  """people id of the movie writer"""
+  people_id: Int!
+
+  """people of the movie writer"""
+  People: People!
+
+  """movie id of the movie writer"""
+  movie_id: Int!
+
+  """movie of the movie writer"""
+  Movie: Movie!
+}
+
 type People {
   """id of the people"""
   id: Int!
 
   """name of the people"""
   name: String!
+  MovieDirector: [MovieDirector!]!
+  MovieWriter: [MovieWriter!]!
 }
 
 type MovieDirector {
@@ -60,6 +76,7 @@ type Genre {
 
   """description of genre"""
   description: String!
+  MovieGenre: [MovieGenre!]!
 }
 
 type MovieGenre {
@@ -77,20 +94,6 @@ type MovieGenre {
 
   """genre of Movie Genre"""
   Genre: Genre!
-}
-
-type MovieWriter {
-  """people id of the movie writer"""
-  people_id: Int!
-
-  """people of the movie writer"""
-  People: People!
-
-  """movie id of the movie writer"""
-  movie_id: Int!
-
-  """movie of the movie writer"""
-  Movie: Movie!
 }
 
 type Movie {
@@ -116,9 +119,26 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Pagination {
+  """current page number"""
+  page: Float!
+
+  """total page of the pagination"""
+  totalPage: Float!
+}
+
+type MovieSearch {
+  """id of the movie"""
+  Movie: [Movie!]!
+
+  """name of the movie"""
+  pagination: Pagination!
+}
+
 type Query {
   movie: [Movie!]!
   movie_find(id: Int!): Movie!
+  movies(limit: Int = 100, page: Int = 1, searchMovieInput: SearchMovieInput): MovieSearch!
   character: [Character!]!
   character_find(id: Int!): Character!
   MovieCharacter: [MovieCharacter!]!
@@ -133,8 +153,26 @@ type Query {
   movieWriter(id: Int!): MovieWriter!
 }
 
+input SearchMovieInput {
+  """name of the movie"""
+  id: Int
+
+  """name of the movie"""
+  name: String
+
+  """release date of the movie"""
+  releasedDate: DateTime
+
+  """description of the movie"""
+  description: String
+  characters: [String!]
+  genres: [String!]
+  directors: [String!]
+  writers: [String!]
+}
+
 type Mutation {
-  createMovie(createMovieInput: CreateMovieInput!): Movie!
+  createMovie(createMovieInput: CreateMovieInput): Movie!
   updateMovie(updateMovieInput: UpdateMovieInput!): Movie!
   removeMovie(id: Int!): Movie!
   createCharacter(createCharacterInput: CreateCharacterInput!): Character!
