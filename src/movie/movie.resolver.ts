@@ -1,3 +1,4 @@
+import { DeleteMovieOutput } from './dto/delete-movie.output';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { MovieService } from './movie.service';
 import { Movie } from './entities/movie.entity';
@@ -35,7 +36,7 @@ export class MovieResolver {
     return this.movieService.update(updateMovieInput.id, updateMovieInput);
   }
 
-  @Mutation(() => Movie)
+  @Mutation(() => DeleteMovieOutput)
   removeMovie(@Args('id', { type: () => Int }) id: number) {
     return this.movieService.remove(id);
   }
