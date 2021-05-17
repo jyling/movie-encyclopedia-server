@@ -7,6 +7,9 @@ export class CreateMovieInput {
   @Length(3,32)
   name: string;
 
+  @Field(() => String, { defaultValue: ""})
+  image: string
+
   @Field(() => Date, { description: 'release date of the movie' })
   @IsDate()
   releasedDate: Date;
