@@ -13,6 +13,7 @@ generator client {
 
 model Movie {
   id Int @id @default(autoincrement())
+  imageURL String @default("")
   name String @db.VarChar(32)
   description String
   releasedDate DateTime
@@ -27,7 +28,7 @@ model MovieCharacter {
   character_id Int
   Character Character @relation(fields: [character_id], references: [id])
   movie_id Int
-  Movie Movie @relation(fields: [movie_id], references: [id])
+  Movie Movie? @relation(fields: [movie_id], references: [id])
 }
 
 model Character {
@@ -41,7 +42,7 @@ model MovieGenre {
   genre_id Int
   Genre Genre @relation(fields: [genre_id], references: [id])
   movie_id Int
-  Movie Movie @relation(fields: [movie_id], references: [id])
+  Movie Movie? @relation(fields: [movie_id], references: [id])
 }
 
 model Genre {
@@ -56,7 +57,7 @@ model MovieDirector {
   people_id Int
   People People @relation(fields: [people_id], references: [id])
   movie_id Int
-  Movie Movie @relation(fields: [movie_id], references: [id])
+  Movie Movie? @relation(fields: [movie_id], references: [id])
 }
 
 model MovieWriter {
@@ -64,7 +65,7 @@ model MovieWriter {
   people_id Int
   People People @relation(fields: [people_id], references: [id])
   movie_id Int
-  Movie Movie @relation(fields: [movie_id], references: [id])
+  Movie Movie? @relation(fields: [movie_id], references: [id])
 }
 
 model People {
