@@ -9,6 +9,9 @@ export class Movie {
   @Field(() => Number, { description: 'id of the movie' })
   id: number;
 
+  @Field(() => String)
+  imageURL: string;
+
   @Field(() => String, { description: 'name of the movie' })
   name: string;
 
