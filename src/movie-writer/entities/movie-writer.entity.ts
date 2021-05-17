@@ -4,7 +4,8 @@ import { People } from 'src/people/entities/people.entity';
 
 @ObjectType()
 export class MovieWriter {
-
+  @Field(() => Int, { description: 'id of the movie writer' })
+  id: number
   @Field(() => Int, { description: 'people id of the movie writer' })
   people_id: number;
 
