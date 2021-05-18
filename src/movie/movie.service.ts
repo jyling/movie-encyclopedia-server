@@ -50,7 +50,7 @@ export class MovieService {
         find[relationName] = { some: relationColumnObj }
         return find;
       } catch (error) {
-        throw new Error(`could not find ${inputs[index]} in ${targetDBName}`)
+        throw new Error(`could not find '${inputs[index]}' in ${targetDBName}`)
       }
     });
 
