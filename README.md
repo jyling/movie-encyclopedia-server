@@ -30,6 +30,14 @@ You can get your firebase private key in [Here](https://firebase.google.com/docs
 
 ## Running the app
 
+### For first time, you need to migrate the database with prisma
+you can only use [prisma](https://www.prisma.io/docs/concepts/components/prisma-cli/installation) commands after you run npm install 
+
+**Note:** If there's any error, create a new database with the name given in the .ENV file
+```bash
+$ npx prisma migrate deploy
+```
+
 ```bash
 # development
 $ npm run start
